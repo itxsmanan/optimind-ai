@@ -9,35 +9,37 @@ import PropTypes from "prop-types";
 
 export function StatisticsCard({ color, icon, title, value, footer }) {
   return (
-    <Card className="border border-blue-gray-100 shadow-sm">
-      <CardHeader
-        variant="gradient"
-        color={color}
-        floated={false}
-        shadow={false}
-        className="absolute grid h-12 w-12 place-items-center"
-      >
-        {icon}
-      </CardHeader>
-      <CardBody className="p-4 text-right">
-        <Typography variant="small" className="font-normal text-blue-gray-600">
-          {title}
-        </Typography>
-        <Typography variant="h4" color="blue-gray">
-          {value}
-        </Typography>
-      </CardBody>
-      {footer && (
-        <CardFooter className="border-t border-blue-gray-50 p-4">
-          {footer}
-        </CardFooter>
-      )}
+    <Card className="border border-blue-gray-100 shadow-md w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg mx-auto">
+      <div className="relative">
+        <CardHeader
+          variant="gradient"
+          color={color}
+          floated={false}
+          shadow={false}
+          className="absolute top-4 left-4 flex items-center justify-center h-12 w-12 rounded-full"
+        >
+          {icon}
+        </CardHeader>
+        <CardBody className="p-4 pt-16">
+          <Typography variant="small" className="font-normal text-blue-gray-600">
+            {title}
+          </Typography>
+          <Typography variant="h4" color="blue-gray" className="mt-2">
+            {value}
+          </Typography>
+        </CardBody>
+        {footer && (
+          <CardFooter className="border-t border-blue-gray-50 p-4">
+            {footer}
+          </CardFooter>
+        )}
+      </div>
     </Card>
   );
 }
 
 StatisticsCard.defaultProps = {
-  color: "blue",
+  color: "red",
   footer: null,
 };
 

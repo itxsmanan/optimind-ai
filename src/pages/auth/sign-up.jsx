@@ -1,40 +1,67 @@
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+import React, { useState } from 'react';
+import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons from react-icons
 
 export function SignUp() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const handlePasswordToggle = () => {
+    setPasswordVisible(prevState => !prevState);
+  };
+
   return (
-    <section className="m-8 flex">
-            <div className="w-2/5 h-full hidden lg:block">
+    <section className="m-8 flex flex-col lg:flex-row">
+      <div className="w-full lg:w-2/5 h-full hidden lg:block">
         <img
           src="/img/pattern.png"
           className="h-full w-full object-cover rounded-3xl"
+          alt="Pattern"
         />
       </div>
       <div className="w-full lg:w-3/5 flex flex-col items-center justify-center">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Join Us Today</Typography>
-          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to register.</Typography>
+          <div className="flex flex-col items-center justify-center mb-6"><img src="/img/optimind.jpg" width={100}/></div>
+          <Typography variant="h2" className="font-bold mb-4">Join Optimind-Ai Today</Typography>
+          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your name, email and password to register.</Typography>
         </div>
-        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Your email
-            </Typography>
+        <form className="mt-8 mb-2 mx-auto w-full max-w-screen-md lg:w-1/2">
+          <div className="mb-4 flex flex-col gap-4">
             <Input
               size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
+              type="text"
+              label="Your Name"
+              required
+              className="shadow-md"
+            />    
+             <Input
+              size="lg"
+              type="email"
+              label="Email"
+              required
+              className="shadow-md"
             />
+
+            <div className="relative">
+              <Input
+                type={passwordVisible ? "text" : "password"}
+                size="lg"
+                label="Password"
+                required
+                className="shadow-md"
+              />
+              <button
+                type="button"
+                onClick={handlePasswordToggle}
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+              >
+                {passwordVisible ? (
+                  <FaEyeSlash className="h-5 w-5" />
+                ) : (
+                  <FaEye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
           </div>
           <Checkbox
             label={
@@ -43,7 +70,7 @@ export function SignUp() {
                 color="gray"
                 className="flex items-center justify-start font-medium"
               >
-                I agree the&nbsp;
+                I agree to the&nbsp;
                 <a
                   href="#"
                   className="font-normal text-black transition-colors hover:text-gray-900 underline"
@@ -75,17 +102,12 @@ export function SignUp() {
               </svg>
               <span>Sign in With Google</span>
             </Button>
-            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
-              <img src="/img/twitter-logo.svg" height={24} width={24} alt="" />
-              <span>Sign in With Twitter</span>
-            </Button>
           </div>
           <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
             Already have an account?
-            <Link to="/auth/sign-in" className="text-gray-900 ml-1">Sign in</Link>
+            <Link to="/" className="text-gray-900 ml-1">Sign in</Link>
           </Typography>
         </form>
-
       </div>
     </section>
   );

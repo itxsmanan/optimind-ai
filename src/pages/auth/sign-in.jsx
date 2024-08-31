@@ -1,86 +1,94 @@
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
-import { Link } from "react-router-dom";
-
+import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useState, useEffect } from "react";
 
 export function SignIn() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
+
+  // const [isOpen, setIsOpen] = useState(false);
+  const [forgetPassword, setForgetPassword] = useState("");
+
+  // const handleForgot=()=>{
+  //   navigate("/auth/forgotPassword");
+  // }
+  // const toggleModal = () => {
+  //   setIsOpen(!isOpen);
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+
+  const handlePasswordToggle = () => {
+    setPasswordVisible((prevState) => !prevState);
+  };
+
+  const handleSignIn = () => {
+    navigate("/dashboard/home");
+    // try {
+    //   if (email === "admin@admin.com" && password === "123456") {
+    //     localStorage.setItem("email", email);
+    //     localStorage.setItem("password", password);
+    //   } else {
+    //     setShowAlert(true); 
+    //     setTimeout(() => {
+    //       setShowAlert(false); 
+    //     }, 3000);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  };
+
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
+          <div className="flex flex-col items-center justify-center mb-6"><img src="/img/optimind.jpg" width={100}/></div>
+          <Typography variant="h2" className="font-bold mb-4">Sign In To Optimind-Ai</Typography>
           <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to Sign In.</Typography>
         </div>
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
           <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Your email
-            </Typography>
             <Input
               size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
+              type="email"
+              label="Email"
+              required
+              className="shadow-md"
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
-          </div>
-          <Checkbox
-            label={
-              <Typography
-                variant="small"
-                color="gray"
-                className="flex items-center justify-start font-medium"
+            <div className="relative">
+              <Input
+                type={passwordVisible ? "text" : "password"}
+                size="lg"
+                label="Password"
+                required
+                className="shadow-md"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                onClick={handlePasswordToggle}
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
               >
-                I agree the&nbsp;
-                <a
-                  href="#"
-                  className="font-normal text-black transition-colors hover:text-gray-900 underline"
-                >
-                  Terms and Conditions
-                </a>
-              </Typography>
-            }
-            containerProps={{ className: "-ml-2.5" }}
-          />
-          <Button className="mt-6" fullWidth>
+                {passwordVisible ? <FaEyeSlash className="h-5 w-5" /> : <FaEye className="h-5 w-5" />}
+              </button>
+            </div>
+          </div>
+    
+          <Button className="mt-6" type="submit" fullWidth onClick={handleSignIn}>
             Sign In
           </Button>
-
           <div className="flex items-center justify-between gap-2 mt-6">
-            <Checkbox
-              label={
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center justify-start font-medium"
-                >
-                  Subscribe me to newsletter
-                </Typography>
-              }
-              containerProps={{ className: "-ml-2.5" }}
-            />
-            <Typography variant="small" className="font-medium text-gray-900">
-              <a href="#">
-                Forgot Password
-              </a>
+            <Typography variant="small" className="font-medium text-gray-900 cursor-pointer" >
+          <Link to="/forgotPassword">  Forgot Password?</Link>
             </Typography>
           </div>
           <div className="space-y-4 mt-8">
@@ -100,25 +108,28 @@ export function SignIn() {
               </svg>
               <span>Sign in With Google</span>
             </Button>
-            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
-              <img src="/img/twitter-logo.svg" height={24} width={24} alt="" />
-              <span>Sign in With Twitter</span>
-            </Button>
           </div>
           <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
-            Not registered?
-            <Link to="/auth/sign-up" className="text-gray-900 ml-1">Create account</Link>
+            Not registered? <Link to="/signUp" className="text-gray-900 ml-1">Create account</Link>
           </Typography>
         </form>
 
+        {showAlert && (
+          <div className="fixed bottom-10 left-40 transform -translate-x-1/2 z-50">
+            <div className="flex items-center justify-between bg-red-600 text-white px-4 py-3 rounded-lg shadow-md">
+              <p className="text-sm font-medium">Uh oh, Invalid credentials!</p>
+            </div>
+          </div>
+        )}
       </div>
+
       <div className="w-2/5 h-full hidden lg:block">
         <img
           src="/img/pattern.png"
           className="h-full w-full object-cover rounded-3xl"
         />
       </div>
-
+ 
     </section>
   );
 }

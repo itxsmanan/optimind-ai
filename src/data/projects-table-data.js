@@ -1,65 +1,34 @@
 export const projectsTableData = [
   {
-    img: "/img/logo-xd.svg",
-    name: "Material XD Version",
-    members: [
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-    ],
-    budget: "$14,000",
-    completion: 60,
+    "patientName": "John Doe",
+    "visitDate": "2024-08-15",
+    "visitDuration": "30 minutes"
   },
   {
-    img: "/img/logo-atlassian.svg",
-    name: "Add Progress Track",
-    members: [
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-    ],
-    budget: "$3,000",
-    completion: 10,
+    "patientName": "Jane Smith",
+    "visitDate": "2024-08-16",
+    "visitDuration": "45 minutes"
   },
   {
-    img: "/img/logo-slack.svg",
-    name: "Fix Platform Errors",
-    members: [
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-    ],
-    budget: "Not set",
-    completion: 100,
+    "patientName": "Michael Johnson",
+    "visitDate": "2024-08-17",
+    "visitDuration": "60 minutes"
   },
   {
-    img: "/img/logo-spotify.svg",
-    name: "Launch our Mobile App",
-    members: [
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-    ],
-    budget: "$20,500",
-    completion: 100,
+    "patientName": "Emily Davis",
+    "visitDate": "2024-08-18",
+    "visitDuration": "20 minutes"
   },
   {
-    img: "/img/logo-jira.svg",
-    name: "Add the New Pricing Page",
-    members: [{ img: "/img/team-4.jpeg", name: "Alexander Smith" }],
-    budget: "$500",
-    completion: 25,
+    "patientName": "Robert Brown",
+    "visitDate": "2024-08-19",
+    "visitDuration": "50 minutes"
   },
   {
-    img: "/img/logo-invision.svg",
-    name: "Redesign New Online Shop",
-    members: [
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-    ],
-    budget: "$2,000",
-    completion: 40,
-  },
+    "patientName": "Linda Wilson",
+    "visitDate": "2024-08-20",
+    "visitDuration": "40 minutes"
+  } 
 ];
 
 export default projectsTableData;

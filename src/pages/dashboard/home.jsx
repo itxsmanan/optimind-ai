@@ -4,252 +4,144 @@ import {
   Card,
   CardHeader,
   CardBody,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-  Tooltip,
-  Progress,
 } from "@material-tailwind/react";
 import {
-  EllipsisVerticalIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
-import { StatisticsCard } from "@/widgets/cards";
-import { StatisticsChart } from "@/widgets/charts";
-import {
   statisticsCardsData,
-  statisticsChartsData,
   projectsTableData,
-  ordersOverviewData,
 } from "@/data";
-import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import ChartBarCustomTooltip from "@/widgets/charts/statistics-chart";
+import TutorialsCard from "@/widgets/cards/tutorialsCard";
+import Documentation from "@/widgets/cards/patientDocumentationCard";
+import ChangePasswordCard from "@/widgets/cards/changePasswordCard";
+import TwoFactorAuthCard from "@/widgets/cards/twoFactorAuth";
+import DeleteAccountCard from "@/widgets/cards/deleteAccount";
+// import { UserCircleIcon } from "@heroicons/react/solid";
 
 export function Home() {
+  const username = "John Doe"; // Replace with dynamic data if available
+  const subscriptionType = "Platinum";
+  const renewalTime = "August 24, 2024";
+
   return (
-    <div className="mt-12">
-      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-        {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
-          <StatisticsCard
-            key={title}
-            {...rest}
-            title={title}
-            icon={React.createElement(icon, {
-              className: "w-6 h-6 text-white",
-            })}
-            footer={
-              <Typography className="font-normal text-blue-gray-600">
-                <strong className={footer.color}>{footer.value}</strong>
-                &nbsp;{footer.label}
-              </Typography>
-            }
-          />
-        ))}
+    <div className="">
+      {/* Welcome Section */}
+      <div className="mb-8 w-full p-6 bg-gradient-to-r from-blue-500 to-teal-500 text-white1 rounded-b-2xl shadow-lg flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          {/* <UserCircleIcon className="w-12 h-12 text-white" /> */}
+          <div>
+            <Typography variant="h4" color="white" className="font-semibold">
+              👋 Hey, welcome {username}!
+            </Typography>
+            <Typography variant="h6" color="white" className="font-medium">
+              Subscription: {subscriptionType}
+            </Typography>
+          </div>
+        </div>
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
-        {statisticsChartsData.map((props) => (
-          <StatisticsChart
-            key={props.title}
-            {...props}
-            footer={
-              <Typography
-                variant="small"
-                className="flex items-center font-normal text-blue-gray-600"
-              >
-                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
-                &nbsp;{props.footer}
-              </Typography>
-            }
-          />
-        ))}
-      </div>
+
+      {/* First Row */}
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <Card className="overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm">
+        <Card className="overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-md">
           <CardHeader
             floated={false}
             shadow={false}
             color="transparent"
-            className="m-0 flex items-center justify-between p-6"
+            className="m-0 flex flex-col md:flex-row items-center justify-between p-6"
           >
             <div>
-              <Typography variant="h6" color="blue-gray" className="mb-1">
-                Projects
-              </Typography>
-              <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal text-blue-gray-600"
-              >
-                <CheckCircleIcon strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
-                <strong>30 done</strong> this month
+              <Typography variant="h6" color="blue-gray" className="mb-1 text-2xl">
+                Recent Patient Visits
               </Typography>
             </div>
-            <Menu placement="left-start">
-              <MenuHandler>
-                <IconButton size="sm" variant="text" color="blue-gray">
-                  <EllipsisVerticalIcon
-                    strokeWidth={3}
-                    fill="currenColor"
-                    className="h-6 w-6"
-                  />
-                </IconButton>
-              </MenuHandler>
-              <MenuList>
-                <MenuItem>Action</MenuItem>
-                <MenuItem>Another Action</MenuItem>
-                <MenuItem>Something else here</MenuItem>
-              </MenuList>
-            </Menu>
+            <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-4 border border-gray-800 rounded-lg shadow">
+              Reload
+            </button>
           </CardHeader>
-          <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-            <table className="w-full min-w-[640px] table-auto">
-              <thead>
-                <tr>
-                  {["companies", "members", "budget", "completion"].map(
-                    (el) => (
+          <CardBody className="px-0 pt-0 pb-2">
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border border-gray-200 divide-y divide-gray-200">
+                <thead className="bg-gray-100">
+                  <tr>
+                    {["Patient Name", "Visit Date", "Visit Duration"].map((el) => (
                       <th
                         key={el}
-                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                        className="py-3 px-6 text-left text-sm font-semibold text-gray-700 border-b border-gray-200"
                       >
-                        <Typography
-                          variant="small"
-                          className="text-[11px] font-medium uppercase text-blue-gray-400"
-                        >
-                          {el}
-                        </Typography>
+                        {el}
                       </th>
-                    )
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
-                    const className = `py-3 px-5 ${
-                      key === projectsTableData.length - 1
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {projectsTableData.map(
+                    ({ patientName, visitDate, visitDuration }, key) => {
+                      const className = `py-3 px-6 ${key === projectsTableData.length - 1
                         ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
+                        : "border-b border-gray-200"
+                        }`;
 
-                    return (
-                      <tr key={name}>
-                        <td className={className}>
-                          <div className="flex items-center gap-4">
-                            <Avatar src={img} alt={name} size="sm" />
+                      return (
+                        <tr key={patientName} className="hover:bg-gray-50">
+                          <td className={className}>
                             <Typography
                               variant="small"
                               color="blue-gray"
-                              className="font-bold"
+                              className="font-medium"
                             >
-                              {name}
+                              {patientName}
                             </Typography>
-                          </div>
-                        </td>
-                        <td className={className}>
-                          {members.map(({ img, name }, key) => (
-                            <Tooltip key={name} content={name}>
-                              <Avatar
-                                src={img}
-                                alt={name}
-                                size="xs"
-                                variant="circular"
-                                className={`cursor-pointer border-2 border-white ${
-                                  key === 0 ? "" : "-ml-2.5"
-                                }`}
-                              />
-                            </Tooltip>
-                          ))}
-                        </td>
-                        <td className={className}>
-                          <Typography
-                            variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
-                          >
-                            {budget}
-                          </Typography>
-                        </td>
-                        <td className={className}>
-                          <div className="w-10/12">
+                          </td>
+                          <td className={className}>
                             <Typography
                               variant="small"
-                              className="mb-1 block text-xs font-medium text-blue-gray-600"
+                              className="text-xs font-medium text-gray-600"
                             >
-                              {completion}%
+                              {visitDate}
                             </Typography>
-                            <Progress
-                              value={completion}
-                              variant="gradient"
-                              color={completion === 100 ? "green" : "blue"}
-                              className="h-1"
-                            />
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  }
-                )}
-              </tbody>
-            </table>
+                          </td>
+                          <td className={className}>
+                            <Typography
+                              variant="small"
+                              className="text-xs font-medium text-gray-600"
+                            >
+                              {visitDuration}
+                            </Typography>
+                          </td>
+                        </tr>
+                      );
+                    }
+                  )}
+                </tbody>
+              </table>
+            </div>
           </CardBody>
         </Card>
-        <Card className="border border-blue-gray-100 shadow-sm">
-          <CardHeader
-            floated={false}
-            shadow={false}
-            color="transparent"
-            className="m-0 p-6"
-          >
-            <Typography variant="h6" color="blue-gray" className="mb-2">
-              Orders Overview
-            </Typography>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal text-blue-gray-600"
-            >
-              <ArrowUpIcon
-                strokeWidth={3}
-                className="h-3.5 w-3.5 text-green-500"
-              />
-              <strong>24%</strong> this month
-            </Typography>
-          </CardHeader>
-          <CardBody className="pt-0">
-            {ordersOverviewData.map(
-              ({ icon, color, title, description }, key) => (
-                <div key={title} className="flex items-start gap-4 py-3">
-                  <div
-                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${
-                      key === ordersOverviewData.length - 1
-                        ? "after:h-0"
-                        : "after:h-4/6"
-                    }`}
-                  >
-                    {React.createElement(icon, {
-                      className: `!w-5 !h-5 ${color}`,
-                    })}
-                  </div>
-                  <div>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="block font-medium"
-                    >
-                      {title}
-                    </Typography>
-                    <Typography
-                      as="span"
-                      variant="small"
-                      className="text-xs font-medium text-blue-gray-500"
-                    >
-                      {description}
-                    </Typography>
-                  </div>
-                </div>
-              )
-            )}
-          </CardBody>
-        </Card>
+
+        {/* Monthly Usage Overview */}
+        <div className="w-full p-6 bg-white shadow-md rounded-xl">
+          <div className="text-center mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900">
+              Monthly Audio Usage Overview
+            </h2>
+            <p className="text-gray-600">Activity over months</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6">
+            <ChartBarCustomTooltip />
+          </div>
+          <div className="mt-12 text-right">
+            <p className="text-gray-500 text-sm">Latest Renewed At:</p>
+            <p className="text-gray-700 font-medium text-sm">{renewalTime}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Second Row */}
+      <div className="w-full mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <TutorialsCard />
+        <ChangePasswordCard />
+        <DeleteAccountCard />
+        <TwoFactorAuthCard />
+        <Documentation />
       </div>
     </div>
   );

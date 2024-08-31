@@ -6,8 +6,17 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
-import { SignIn, SignUp } from "@/pages/auth";
+import { Home, Profile, } from "@/pages/dashboard";
+import Tables from "./pages/dashboard/database";
+import Pricing from "../src/pages/dashboard/pricing";
+import Tutorial from "../src/pages/dashboard/tutorials";
+import Faqs from "../src/pages/dashboard/faqs";
+import Recording from "../src/pages/dashboard/recording";
+import SummaryGenerator from "../src/pages/dashboard/summaryGenerator";
+import ForgotPassword from "../src/pages/auth/forgotPassword"
+// import { SignIn, SignUp } from "@/pages/auth";
+import { AiTwotoneAudio } from "react-icons/ai";
+import { FaMoneyBill, FaQq, FaQuestion, FaStumbleupon } from "react-icons/fa";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -15,6 +24,7 @@ const icon = {
 
 export const routes = [
   {
+    title: "overview",
     layout: "dashboard",
     pages: [
       {
@@ -23,44 +33,58 @@ export const routes = [
         path: "/home",
         element: <Home />,
       },
+  
       {
+        icon: <FaStumbleupon {...icon} />,
+        name: "summary generator",
+        path: "/summaryGenerator",
+        element: <SummaryGenerator />,
+      },  {
+        icon: <AiTwotoneAudio {...icon} />,
+        name: "recording",
+        path: "/recording",
+        element: <Recording />,
+      },
+      {
+        icon: <TableCellsIcon {...icon} />,
+        name: "database",
+        path: "/patientData",
+        element: <Tables />,
+      },
+
+    ],
+  },
+
+  {
+    title: 'generals',
+    layout: "dashboard",
+    pages: [
+          {
         icon: <UserCircleIcon {...icon} />,
         name: "profile",
         path: "/profile",
         element: <Profile />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
-        element: <Tables />,
-      },
-      {
-        icon: <InformationCircleIcon {...icon} />,
-        name: "notifications",
-        path: "/notifications",
-        element: <Notifications />,
-      },
-    ],
-  },
-  {
-    title: "auth pages",
-    layout: "auth",
-    pages: [
-      {
         icon: <ServerStackIcon {...icon} />,
-        name: "sign in",
-        path: "/sign-in",
-        element: <SignIn />,
+        name: "tutorials",
+        path: "/tutorials",
+        element: <Tutorial />,
       },
       {
-        icon: <RectangleStackIcon {...icon} />,
-        name: "sign up",
-        path: "/sign-up",
-        element: <SignUp />,
+        icon: <FaMoneyBill {...icon} />,
+        name: "pricing",
+        path: "/pricing",
+        element: <Pricing />,
+      }, {
+        icon: <FaQuestion {...icon} />,
+        name: "faq's",
+        path: "/faqs",
+        element: <Faqs />,
       },
-    ],
+    ]
   },
-];
+
+]
 
 export default routes;

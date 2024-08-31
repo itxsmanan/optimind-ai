@@ -29,7 +29,12 @@ export function Auth() {
       name: "sign in",
       path: "/auth/sign-in",
       icon: ArrowRightOnRectangleIcon,
-    },
+    }
+    // ,{
+    //   name: "forgot password",
+    //   path: "/auth/forgotPassword",
+    //   icon: ArrowRightOnRectangleIcon,
+    // },
   ];
 
   return (
