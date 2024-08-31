@@ -48,7 +48,7 @@ export default function ImportTemplate() {
     
   ];
   return (
-    <Tabs value="psychiatry my-10"> 
+    <Tabs value="psychiatry"> 
       <TabsHeader  className="w-full max-w-2xl overflow-x-auto ">
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>

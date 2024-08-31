@@ -27,13 +27,6 @@ const TemplateTabs = ({ onSelect }) => {
     onSelect(template);
   };
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
   return (
     <div className="relative bg-white p-6 rounded-lg">
@@ -55,35 +48,10 @@ const TemplateTabs = ({ onSelect }) => {
             </span>
           </div>
         ))}
-        <div
-          onClick={showModal}
-          className="flex items-center p-4 cursor-pointer bg-gray-100 rounded-md text-gray-500 transition duration-300 ease-in-out"
-        >
-          <div className="text-lg mr-3 font-medium flex gap-3">
-            <FaFileImport className="mt-1" />
-            Import from library
-          </div>
-        </div>
+       
       </div>
 
-      {/* Antd Modal */}
-      <Modal
-        title="Templates Library"
-        visible={isModalVisible}
-        onCancel={handleCancel}
-        footer={null}
-        centered
-        width="80%"
-        className="w-full max-w-7xl"
-      >
-        <div className="text-center mb-4">
-          <h3 className="text-lg font-medium">Choose your profession</h3>
-          <div className="border-t border-gray-300"></div>
-        </div>
-        <div className="my-10  justify-center w-full">
-          <ImportTemplate />
-        </div>
-      </Modal>
+     
     </div>
   );
 };

@@ -14,29 +14,32 @@ import {
 
  import MytemplatesTab from "./myTemplatesTab"
  import MySummaries from "./mySummariesTab"
+ import AddTemplate from "./addTemplate"
 //  import PatientInstructions from "./patientInstructions"
 export default function TabsWithIcon() {
   const data = [
     {
-      label: "My Templates",
-      value: "templates",
-      
+      label: "Templates Setting",
+      value: "templates",   
       desc: <MytemplatesTab/>
     },
     {
-      label: "My Summaries",
+      label: "Summaries Setting",
       value: "summaries",
-
       desc: <MySummaries/>
+    },{
+      label: "Add Template",
+      value: "addTemplate",
+      desc: <AddTemplate/>
     },
-    // {
-    //   label: "Patient Instructions",
-    //   value: "instructions",
-
-    //   desc: <PatientInstructions/>,
-    // },
   ];
   return (
+    <div className="container max-auto">
+        <header className="bg-gradient-to-r from-blue-500 to-teal-500 text-white p-4  sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between rounded-b-2xl shadow-lg">
+        <h1 className="text-2xl sm:text-3xl font-extrabold">Templates Setting</h1>
+      </header>
+       <div className="w-full p-6 sm:p-8 lg:p-10 mt-10 bg-white shadow-lg rounded-lg">
+            
     <Tabs value="templates"> 
       <TabsHeader  className="w-full max-w-2xl overflow-x-auto ">
         {data.map(({ label, value }) => (
@@ -55,5 +58,7 @@ export default function TabsWithIcon() {
         ))}
       </TabsBody>
     </Tabs>
+          </div>
+    </div>
   );
 }

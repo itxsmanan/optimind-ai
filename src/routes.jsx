@@ -9,11 +9,13 @@ import {
 import { Home, Profile, } from "@/pages/dashboard";
 import Tables from "./pages/dashboard/database";
 import Pricing from "../src/pages/dashboard/pricing";
+import { RiSettingsFill } from "react-icons/ri";
 import Tutorial from "../src/pages/dashboard/tutorials";
 import Faqs from "../src/pages/dashboard/faqs";
 import Recording from "../src/pages/dashboard/recording";
 import SummaryGenerator from "../src/pages/dashboard/summaryGenerator";
 import ForgotPassword from "../src/pages/auth/forgotPassword"
+import TemplateSetting from "./pages/dashboard/templateSetting/templateSetting"
 // import { SignIn, SignUp } from "@/pages/auth";
 import { AiTwotoneAudio } from "react-icons/ai";
 import { FaMoneyBill, FaQq, FaQuestion, FaStumbleupon } from "react-icons/fa";
@@ -46,11 +48,17 @@ export const routes = [
         element: <Recording />,
       },
       {
+        icon: <RiSettingsFill {...icon} />,
+        name: "template setting",
+        path: "/templateSetting",
+        element: <TemplateSetting />,
+      },
+      {
         icon: <TableCellsIcon {...icon} />,
         name: "database",
         path: "/patientData",
         element: <Tables />,
-      },
+      },   
 
     ],
   },
@@ -61,7 +69,7 @@ export const routes = [
     pages: [
           {
         icon: <UserCircleIcon {...icon} />,
-        name: "profile",
+        name: "profile setup",
         path: "/profile",
         element: <Profile />,
       },
