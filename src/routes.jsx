@@ -35,17 +35,11 @@ export const routes = [
         path: "/home",
         element: <Home />,
       },
-  
       {
         icon: <FaStumbleupon {...icon} />,
         name: "summary generator",
         path: "/summaryGenerator",
         element: <SummaryGenerator />,
-      },  {
-        icon: <AiTwotoneAudio {...icon} />,
-        name: "recording",
-        path: "/recording",
-        element: <Recording />,
       },
       {
         icon: <RiSettingsFill {...icon} />,
@@ -54,11 +48,17 @@ export const routes = [
         element: <TemplateSetting />,
       },
       {
+      icon: <AiTwotoneAudio {...icon} />,
+      name: "new recording",
+      path: "/recording",
+        element: <Recording />,
+      },
+      {
         icon: <TableCellsIcon {...icon} />,
-        name: "database",
+        name: "patient database",
         path: "/patientData",
         element: <Tables />,
-      },   
+      },
 
     ],
   },
@@ -67,7 +67,7 @@ export const routes = [
     title: 'generals',
     layout: "dashboard",
     pages: [
-          {
+      {
         icon: <UserCircleIcon {...icon} />,
         name: "profile setup",
         path: "/profile",

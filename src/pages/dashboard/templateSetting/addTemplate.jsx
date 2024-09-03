@@ -61,62 +61,10 @@ const NewTemplateForm = () => {
             required
           />
         </div>
-         <div className="flex items-center mb-6">
-              <div className="flex-grow border-t border-gray-300"></div>
-              <h2 className="mx-4 text-lg font-semibold text-gray-700 my-4">Add Summary Notes</h2>
-              <div className="flex-grow border-t border-gray-300"></div>
-            </div> 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="templateName">
-            Summary Note Name
-          </label>
-          <input
-            id="summaryName"
-            type="text"
-            value={summaryName}
-            onChange={(e) => setSummaryName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            placeholder="Enter Summary Note Name
-"
-            required
-          />
-        </div>
-        <div className="mb-10">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="templateDescription">
-            Summary Content
-          </label>
-          <textarea
-            id="summaryContent"
-            value={summaryContent}
-            onChange={(e) => setSummaryContent(e.target.value)}
-            className="w-full px-3 py-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            placeholder="Enter Summary Content"
-            rows="5"
-            required
-          />
-        
-        </div>     <div className="flex items-center mb-6">
-              <div className="flex-grow border-t border-gray-300"></div>
-              <h2 className="mx-4 text-lg font-semibold text-gray-700 my-4">Include Summaries</h2>
-              <div className="flex-grow border-t border-gray-300"></div>
-            </div> 
-      
-        <div className="mb-10">
-          {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="templateDescription">
-            Summary Content
-          </label> */}
-          <textarea
-            id="summaryContent"
-            // value={summaryContent}
-            // onChange={(e) => setSummaryContent(e.target.value)}
-            className="w-full px-3 py-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-            // placeholder="Enter Summary Content"
-            rows="5"
-            required
-          />
+        <div className="mb-10">    
      <Button
           type="submit"
-          className=" bg-blue-500 text-white p-2 rounded float-right  hover:bg-blue-600 transition duration-300"
+          className="text-white p-2 rounded float-right  transition duration-300"
         >
           Create Template
         </Button>

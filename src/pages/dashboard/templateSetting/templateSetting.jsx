@@ -15,6 +15,7 @@ import {
  import MytemplatesTab from "./myTemplatesTab"
  import MySummaries from "./mySummariesTab"
  import AddTemplate from "./addTemplate"
+ import AddSummary from "./addSummary"
 //  import PatientInstructions from "./patientInstructions"
 export default function TabsWithIcon() {
   const data = [
@@ -31,6 +32,10 @@ export default function TabsWithIcon() {
       label: "Add Template",
       value: "addTemplate",
       desc: <AddTemplate/>
+    },{
+      label: "Add Summary",
+      value: "addSummary",
+      desc: <AddSummary/>
     },
   ];
   return (

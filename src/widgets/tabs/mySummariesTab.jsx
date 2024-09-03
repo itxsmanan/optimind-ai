@@ -29,18 +29,18 @@ const SelectableTabs = ({ onSelect }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">Summarization Controls
-</h2>
-      <div className="flex flex-wrap space-x-3 ">
+      <h2 className="text-xl font-semibold mb-4">Summarization Controls</h2>
+      <div className="flex flex-wrap -mx-2">
         {tabs.map((tab) => (
           <div
             key={tab}
             onClick={() => handleToggle(tab)}
-            className={`flex items-center p-2 mt-3 cursor-pointer rounded-md transition duration-300 ease-in-out ${
+            className={`flex items-center w-full sm:w-72 p-4 cursor-pointer rounded-md transition duration-300 ease-in-out mx-2 mt-3 ${
               selectedTabs.includes(tab)
                 ? "bg-blue-500 text-white border border-blue-700"
                 : "bg-gray-100 hover:bg-gray-200 border border-gray-300"
             }`}
+            style={{ height: "70px" }}
           >
             <div className="mr-3">
               {selectedTabs.includes(tab) ? (
@@ -51,7 +51,6 @@ const SelectableTabs = ({ onSelect }) => {
             </div>
             <span className={`text-lg font-medium ${selectedTabs.includes(tab) ? "text-white" : "text-gray-800"}`}>
               {tab}
-              
             </span>
           </div>
         ))}

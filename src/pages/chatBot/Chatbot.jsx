@@ -4,28 +4,28 @@ import { FiMessageSquare } from "react-icons/fi";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([{ sender: "bot", text: "Hello! How can I assist you today?" }]);
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "Hello! How can I assist you today?" }
+  ]);
   const [input, setInput] = useState("");
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSendMessage = () => {
-    if (input.trim() !== "") {
-      const userMessage = { sender: "user", text: input };
+  const handleSendMessage = (messageText) => {
+    const userMessage = { sender: "user", text: messageText || input };
 
-      // Simulated bot response based on user's input
-      const botResponse = generateBotResponse(input);
+    // Simulated bot response based on user's input
+    const botResponse = generateBotResponse(userMessage.text);
 
-      setMessages([...messages, userMessage, botResponse]);
-      setInput("");
-    }
+    setMessages([...messages, userMessage, botResponse]);
+    setInput("");
   };
 
   const generateBotResponse = (inputText) => {
     let botReply = "I'm sorry, I don't understand that.";
-    
+
     if (inputText.toLowerCase().includes("hello")) {
       botReply = "Hi there! How can I help you?";
     } else if (inputText.toLowerCase().includes("help")) {
@@ -35,6 +35,10 @@ const Chatbot = () => {
     }
 
     return { sender: "bot", text: botReply };
+  };
+
+  const handleQuickReplyClick = (text) => {
+    handleSendMessage(text);
   };
 
   return (
@@ -75,6 +79,28 @@ const Chatbot = () => {
             ))}
           </div>
 
+          {/* Quick Reply Options */}
+          <div className="p-2 bg-gray-200 flex flex-wrap space-x-2 justify-center">
+            <button
+              onClick={() => handleQuickReplyClick("Hello")}
+              className="bg-blue-500 text-white rounded-full px-4 py-1 hover:bg-blue-600"
+            >
+              Hello
+            </button>
+            <button
+              onClick={() => handleQuickReplyClick("I need help")}
+              className="bg-blue-500 text-white rounded-full px-4 py-1 hover:bg-blue-600"
+            >
+              I need help
+            </button>
+            <button
+              onClick={() => handleQuickReplyClick("Thank you")}
+              className="bg-blue-500 text-white rounded-full px-4 py-1 hover:bg-blue-600"
+            >
+              Thank you
+            </button>
+          </div>
+
           {/* Input Area */}
           <div className="p-3 bg-white border-t flex items-center space-x-2">
             <input
@@ -86,7 +112,7 @@ const Chatbot = () => {
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()} // Send message on Enter key press
             />
             <button
-              onClick={handleSendMessage}
+              onClick={() => handleSendMessage()}
               className="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 focus:outline-none"
             >
               Send
