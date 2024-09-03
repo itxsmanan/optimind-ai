@@ -12,7 +12,7 @@ export default function AddOtp() {
     <section className='m-8 flex gap-4'>
 
       <div className="w-full lg:w-3/5 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <div className="bg-white p-6 rounded-lg w-full max-w-md">
           <div className="flex flex-col items-center justify-center mb-6"><img src="/img/optimind.jpg" width={100} /></div>
 
           <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">Enter OTP</h2>
