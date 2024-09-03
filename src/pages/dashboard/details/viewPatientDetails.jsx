@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-
+import Result from "./Results/Results"
 export function Accordion () {
   const sections = [
-    { title: 'Section 1', content: 'Content of Section 1' },
-    { title: 'Section 2', content: 'Content of Section 2' },
-    { title: 'Section 3', content: 'Content of Section 3' },
+    { title: 'Visit 1', content:<Result/>  },
+    { title: 'Visit 2', content:  <Result/>},
+    { title: 'Visit 3', content: <Result/> },
   ];
 
   const [openIndex, setOpenIndex] = useState(null);
@@ -27,6 +27,7 @@ export function Accordion () {
                 </div>
             </header>
       {/* <h1 className="text-2xl font-bold mb-4 text-gray-800">Accordion Example</h1> */}
+      <div className='w-full bg-white p-4 mt-10 space-y-6 shadow   rounded-lg'>
       {sections.map((section, index) => (
         <div key={index} className="mb-2">
           <div 
@@ -36,12 +37,14 @@ export function Accordion () {
             <h2 className="text-lg font-semibold">{section.title}</h2>
           </div>
           {openIndex === index && (
-            <div className="p-4 border border-t-0 border-gray-300 bg-white rounded-b-lg">
-              {section.content}
+            <div className="p-4  border border-t-0 border-gray-300 bg-white rounded-b-lg">
+{section.content}
+              
             </div>
           )}
         </div>
       ))}
+</div>
     </div>
   );
 };
