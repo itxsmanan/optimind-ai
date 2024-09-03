@@ -14,7 +14,7 @@ import Tutorial from "../src/pages/dashboard/tutorials";
 import Faqs from "../src/pages/dashboard/faqs";
 import Recording from "../src/pages/dashboard/recording";
 import SummaryGenerator from "../src/pages/dashboard/summaryGenerator";
-import ForgotPassword from "../src/pages/auth/forgotPassword"
+import PatientDetail from "./pages/dashboard/details/viewPatientDetails"
 import TemplateSetting from "./pages/dashboard/templateSetting/templateSetting"
 // import { SignIn, SignUp } from "@/pages/auth";
 import { AiTwotoneAudio } from "react-icons/ai";
@@ -58,8 +58,10 @@ export const routes = [
         name: "patient database",
         path: "/patientData",
         element: <Tables />,
+        
       },
-
+      { path: "/patientDetail",
+        element: < PatientDetail/>,}
     ],
   },
 
@@ -92,7 +94,7 @@ export const routes = [
       },
     ]
   },
-
+ 
 ]
 
 export default routes;

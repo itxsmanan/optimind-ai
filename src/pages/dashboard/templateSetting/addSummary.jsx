@@ -83,11 +83,8 @@ const NewTemplateForm = () => {
 
             </div> 
           <div className='flex justify-end mb-3'><Button onClick={addDiv}>Add Summary</Button></div>
-      
-
         <div className="mb-10" >
-{divs.map((div)=>(
-         
+        {divs.map((div)=>(         
          <div className='bg-gray-200 p-5 my-4 rounded-lg' key={div.id}>
           <textarea
             id="summaryContent"

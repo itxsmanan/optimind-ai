@@ -1,7 +1,9 @@
-import React from "react";
-import { Input, Button } from "@material-tailwind/react";
-
+import React,{useRef, useState} from "react";
+import { Button,Input } from "@material-tailwind/react";
+import { LuCopyCheck } from "react-icons/lu";
+import {   message, Space, Tooltip } from 'antd';
 const TranscriptFollowUp = () => {
+    
     const followUp = [
         {
             title: "Follow-Up Summary",
@@ -13,6 +15,26 @@ const TranscriptFollowUp = () => {
         }
     ];
 
+    
+   const [messageApi,contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Text coppied',
+    });
+  };
+ const textRef = useRef();
+  // Function to handle copy to clipboard
+  const copyToClipboard = (text) => {
+     // Get text content of the div
+    navigator.clipboard.writeText(text) // Copy text to clipboard
+      .then(() => {
+success()
+      })
+      .catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+  };
     return (
         <div className="p-4 md:p-6 space-y-6">
             {/* Top Section */}
@@ -36,13 +58,19 @@ const TranscriptFollowUp = () => {
             {/* Follow-Up Details */}
             <div className="w-full bg-white p-4  shadow-md h-96 overflow-y-auto rounded-lg">
                 {followUp.map((followUps, index) => (
-                    <div key={index} className="p-4  py-16 border rounded-lg shadow-sm my-3">
+                    <div key={index} className="p-4   border rounded-lg shadow-sm my-3">
+                        <div className="flex justify-between mb-2">
                         <h1 className="text-base md:text-lg font-semibold text-gray-700">{followUps.title}</h1>
-                        <p className="text-sm md:text-base">{followUps.details}</p>
-                        <Button className="float-right">Talk to Notes</Button>
+                         <Tooltip  title={textRef?"copy":"copied"}>
+                        <LuCopyCheck onClick={()=>copyToClipboard(followUps.details)} className="cursor-pointer"/> </Tooltip>
+                        </div>
+                        <p className="text-sm md:text-base" ref={textRef} >{followUps.details}</p>
+                        <div className='flex justify-end my-2'><Button className="float-right">Talk to Notes</Button></div>
                     </div>
+
                 ))}
             </div>
+                {contextHolder}
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaEye, FaTrash } from 'react-icons/fa';
+import {  Link, useNavigate } from 'react-router-dom';
 
 const patientsData = [
   { id: 1, name: 'John Doe', age: 30, gender: 'Male', lastVisit: '2024-08-12 10:30 AM' },
@@ -58,7 +59,10 @@ const PatientTable = () => {
   );
 
   const totalPages = Math.ceil(sortedData.length / pageSize);
-
+const navigate =useNavigate()
+  const patientDetail=()=>{
+navigate("/dashboard/patientDetail")
+  }
   return (
     <div className="w-full  mx-auto ">
               <header className="bg-gradient-to-r from-blue-500 to-teal-500 text-white p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between rounded-b-2xl shadow-lg">
@@ -152,7 +156,8 @@ const PatientTable = () => {
                   <td className="py-4 px-6">{patient.gender}</td>
                   <td className="py-4 px-6">{patient.lastVisit}</td>
                   <td className="flex py-4 px-6 items-center gap-x-2  ">
-                    <FaEye className="cursor-pointer text-blue-500 hover:text-blue-700" />
+                    
+                    <FaEye className="cursor-pointer text-blue-500 hover:text-blue-700" onClick={patientDetail}/>
                     <FaTrash className="cursor-pointer text-red-500 hover:text-red-700" />
                   </td>
                 </tr>

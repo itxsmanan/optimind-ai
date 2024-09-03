@@ -5,6 +5,7 @@ import ForgotPassword from "./pages/auth/forgotPassword"
 import Otp from "./pages/auth/otp"
 import RestPassword from "./pages/auth/restPassword"
 import Chatbot from "./pages/chatBot/Chatbot";
+import PatientDetail from "./pages/dashboard/details/viewPatientDetails"
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/otp" element={<Otp />} />
       <Route path="/restPassword" element={<RestPassword />} />
       <Route path="/forgotPassword" element={<ForgotPassword />} />
+      {/* <Route path="/patientDetail" element={<PatientDetail />} /> */}
       {/* <Route path="*" element={<Navigate to="/dashboard/home" replace />} /> */}
     </Routes>
     <Chatbot/>

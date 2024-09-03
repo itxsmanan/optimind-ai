@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 // import transcriptData from "./TranscriptData"
 import { Input, Button } from "@material-tailwind/react";
+import { message, Tooltip } from "antd";
+import { LuCopyCheck } from "react-icons/lu";
 
 
 const TranscriptFollowUp = () => {
@@ -24,6 +26,25 @@ const TranscriptFollowUp = () => {
             - The client demonstrates strong problem-solving skills and memory retention, particularly evident in solving Rubik's cubes"`
         }
     ]
+     const [messageApi,contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Text coppied',
+    });
+  };
+ const textRef = useRef();
+  // Function to handle copy to clipboard
+  const copyToClipboard = (text) => {
+     // Get text content of the div
+    navigator.clipboard.writeText(text) // Copy text to clipboard
+      .then(() => {
+success()
+      })
+      .catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+  };
     return (
         <div className="p-4 md:p-6 space-y-6">
             {/* Left Sidebar with Heading */}
@@ -49,7 +70,11 @@ const TranscriptFollowUp = () => {
                 {followUp.map((followUps)=>(
                     
                    <div className="px-10 py-2 m-3 rounded-lg shadow-lg divide-y divide-gray-300">
+                    <div className="flex justify-between mb-2">
                     <h1 className="text-lg mb-4 font-semibold text-gray-700">{followUps.title}</h1>
+                         <Tooltip  title={textRef?"copy":"copied"}>
+                        <LuCopyCheck onClick={()=>copyToClipboard(followUps.details)} className="cursor-pointer"/> </Tooltip>
+                        </div>
                     <p className="py-2">{followUps.details}</p>
                     <div className="my-10 py-2">
                     <Button className="float-right">Talk to Notes</Button>
@@ -59,6 +84,7 @@ const TranscriptFollowUp = () => {
                 
                 ))}
             </div>
+            {contextHolder}
         </div>
     );
 };
