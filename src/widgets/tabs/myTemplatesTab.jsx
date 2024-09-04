@@ -24,7 +24,7 @@ const TemplateTabs = ({ onSelect }) => {
   };
 
   return (
-    <div className="relative bg-white p-6 rounded-lg">
+    <div className="relative  p-6 rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Select Template</h2>
       <div className="flex flex-wrap -mx-2">
         {templates.map((template) => (

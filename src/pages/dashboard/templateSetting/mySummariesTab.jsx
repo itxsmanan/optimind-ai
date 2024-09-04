@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Menu, Dropdown, Button, Modal } from "antd";
-import { FaPen, FaCopy, FaTrash, FaEllipsisV } from "react-icons/fa";
+import { FaPen, FaCopy, FaTrash, FaEllipsisV, FaFileImport } from "react-icons/fa";
 import Swal from "sweetalert2";
+import ImportSummary from "../../../widgets/tabs/importSummary/importSummary";
 
 const tabs = [
   "Assessment and Plan",
@@ -18,7 +19,7 @@ const tabs = [
 
 const SelectableTabs = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const handleMenuClick = (e, tab) => {
 
     if (e.key === "edit") {
@@ -34,6 +35,13 @@ const SelectableTabs = () => {
     };
     const handleCancel = () => {
         setIsModalVisible(false);
+    };
+      const showEditModal = () => {
+        setIsEditModalVisible(true);
+    };
+
+    const handleCancelEdit = () => {
+        setIsEditModalVisible(false);
     };
 
    const handleDelete=()=>{
@@ -59,7 +67,7 @@ const SelectableTabs = () => {
   const menu = (tab) => (
     <Menu onClick={(e) => handleMenuClick(e, tab)}>
       <Menu.Item key="edit">
-        <div className="flex items-center gap-2" onClick={showModal}>
+        <div className="flex items-center gap-2" onClick={showEditModal}>
           <FaPen />
           <span>Edit Template</span>
         </div>
@@ -94,11 +102,40 @@ const SelectableTabs = () => {
             </Dropdown>
           </div>
         ))}
+           <div
+                    onClick={showModal}
+                    className="flex items-center justify-center p-4 w-full  cursor-pointer bg-gray-100 rounded-md text-gray-500 hover:bg-gray-200"
+                >
+                    <div className="text-lg font-medium flex items-center gap-3">
+                        <FaFileImport />
+                        Import from library
+                    </div>
+                </div>
       </div>
+
+        {/* Antd Modal */}
+            <Modal
+                title="Summary Library"
+                visible={isModalVisible}
+                onCancel={handleCancel}
+                footer={null}
+                centered
+                width="80%"
+                className="w-full max-w-7xl"
+            >
+                <div className="text-center mb-4">
+                    <h3 className="text-lg font-medium">Choose your profession</h3>
+                    <div className="border-t border-gray-300"></div>
+                </div>
+                <div className="my-10 justify-center w-full">
+                    <ImportSummary />
+                </div>
+            </Modal>
+
           <Modal
         title="Currently editing: (Promt Name)"
-        visible={isModalVisible}
-        onCancel={handleCancel}
+        visible={isEditModalVisible}
+        onCancel={handleCancelEdit}
         footer={null}
         centered
         width="80%"
