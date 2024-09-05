@@ -87,12 +87,25 @@ const NewTemplateForm = () => {
         <div className="mb-2">
             {divs.map((div)=>(         
          <div className='bg-gray-200 p-5 my-4 rounded-lg' key={div.id}>
+                <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="templateName">
+            Summary heading
+          </label>
+          <input
+            id="templateName"
+            type="text"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            placeholder="Enter template name"
+            required
+          />
+        </div>
           <textarea
             id="summaryContent"
             className="w-full px-3 py-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
             rows="5"
             required
           />
+
           <div className='text-red-500 cursor-pointer' onClick={()=>deleteDiv(div.id)}> <FaTrash/></div>
           </div>
         ))}    

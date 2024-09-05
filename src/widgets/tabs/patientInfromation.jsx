@@ -136,15 +136,15 @@ function PatientInformation() {
           </Button>
         )}
         <Button
-          className="bg-gradient-to-r from-gray-500 to-gray-600 text-white py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
+          className="bg-gradient-to-r from-gray-500 to-gray-600 text-white  px-6 rounded-lg shadow-md transition duration-300 ease-in-out"
         >
-          <FaUpload size={20} className="mr-2" /> Upload
+           Upload
         </Button>
         <Button
           onClick={handleRemoveRecording}
-          className="bg-gradient-to-r from-gray-500 to-gray-600 text-white py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
+          className="bg-gradient-to-r from-gray-500 to-gray-600 text-white px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
         >
-          <IoRefresh size={20} className="mr-2" /> Clear Recording
+          Clear Recording
         </Button>
       </div>
 

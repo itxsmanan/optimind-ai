@@ -14,7 +14,7 @@ import {
 
  import MytemplatesTab from "./myTemplatesTab"
  import MySummaries from "./mySummariesTab"
-//  import PatientInstructions from "./patientInstructions"
+ import PatientInstructions from "./patientInstructions"
 export default function TabsWithIcon() {
   const data = [
     {
@@ -29,12 +29,11 @@ export default function TabsWithIcon() {
 
       desc: <MySummaries/>
     },
-    // {
-    //   label: "Patient Instructions",
-    //   value: "instructions",
-
-    //   desc: <PatientInstructions/>,
-    // },
+    {
+      label: "Patient Instructions",
+      value: "instructions",
+      desc: <PatientInstructions/>,
+    },
   ];
   return (
     <Tabs value="templates"> 
